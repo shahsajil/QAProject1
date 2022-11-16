@@ -17,6 +17,7 @@
         private double _gasRemaining;
         private double _mileage;
         private bool _hasFlatTire;
+        public bool hasFlatTire;
         #endregion
 
         #region Private Properties
@@ -104,7 +105,14 @@
             }
             return statusString;
         }
-
+        public void FlatTire()
+        {
+            _hasFlatTire = true;
+        }
+        public async Task ChangeTireAsyncTest()
+        {
+            await ChangeTireAsync();
+        }
         protected async Task ChangeTireAsync()
         {
             if (!_hasFlatTire)
@@ -133,5 +141,6 @@
             double rand = randomNumberGenerator.NextDouble();
             return rand < probabilityOfFlatThisTrip;
         }
+
     }
 }

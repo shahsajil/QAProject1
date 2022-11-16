@@ -5,7 +5,12 @@ VisualStudioVersion = 17.2.32505.173
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeLouisvilleUnitTestProject", "CodeLouisvilleUnitTestProject\CodeLouisvilleUnitTestProject.csproj", "{5A382F19-26F2-46F9-9FEF-121E987FDD1B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeLouisvilleUnitTestProjectTests", "CodeLouisvilleUnitTestProjectTests\CodeLouisvilleUnitTestProjectTests.csproj", "{1E0B4A6C-DA3A-4218-868F-0BDC812C545B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeLouisvilleUnitTestProjectTests", "CodeLouisvilleUnitTestProjectTests\CodeLouisvilleUnitTestProjectTests.csproj", "{1E0B4A6C-DA3A-4218-868F-0BDC812C545B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4F651C10-1883-474A-ACE5-311C0AFE1AD4}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
