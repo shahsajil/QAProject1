@@ -10,7 +10,9 @@
         public SemiTruck()
         {
             //YOUR CODE HERE: 
-            throw new NotImplementedException();
+            NumberOfTires = 18;
+            Cargo = new List<CargoItem>();
+            
         }
 
         /// <summary>
@@ -20,7 +22,8 @@
         public void LoadCargo(CargoItem item)
         {
             //YOUR CODE HERE
-            throw new NotImplementedException();
+            Cargo.Add(item);
+           
         }
             
         /// <summary>
@@ -32,7 +35,17 @@
         public CargoItem UnloadCargo(string name)
         {
             //YOUR CODE HERE
-            throw new NotImplementedException();
+           var ItemRemoved = Cargo.FirstOrDefault(CargoItem => CargoItem.Name == name);
+            if(ItemRemoved != null)
+            {
+                Cargo.Remove(ItemRemoved);
+                return ItemRemoved;
+            }
+            else
+            {
+                throw new ArgumentException();
+            }
+           
         }
 
         /// <summary>
@@ -43,7 +56,10 @@
         public List<CargoItem> GetCargoItemsByName(string name)
         {
             //YOUR CODE HERE
-            throw new NotImplementedException();
+            List<CargoItem> newNames = new();
+            newNames = Cargo.Where(c => c.Name == name).ToList();
+
+            return newNames;
         }
 
         /// <summary>
@@ -54,7 +70,10 @@
         public List<CargoItem> GetCargoItemsByPartialDescription(string description)
         {
             //YOUR CODE HERE
-            throw new NotImplementedException();
+            List<CargoItem> newPartialDescription = new();
+            newPartialDescription = Cargo.Where(c => c.Description == description).ToList();
+
+            return newPartialDescription;
         }
 
         /// <summary>
@@ -64,7 +83,8 @@
         public int GetTotalNumberOfItems()
         {
             //YOUR CODE HERE
-            throw new NotImplementedException();
+           var totalItems = Cargo.Count;
+            return totalItems;
         }
     }
 }

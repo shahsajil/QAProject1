@@ -1,6 +1,6 @@
 ﻿namespace CodeLouisvilleUnitTestProject
 {
-    internal class GasOverfillException : Exception
+    public class GasOverfillException : Exception
     {
         public GasOverfillException(double amountAdded, double capacity)
             : base($"Unable to add {amountAdded} gallons to tank " +
@@ -8,10 +8,17 @@
         { }
     }
 
-    internal class NoTireToChangeException : Exception
+    public class NoTireToChangeException : Exception
     {
         public NoTireToChangeException()
             : base($"No flat tire to change")
+        { }
+    }
+
+    public class NoCargoItemMatchingNameException : Exception
+    {
+        public NoCargoItemMatchingNameException()
+            : base($"Cargo not found on matching List entered name")
         { }
     }
 }

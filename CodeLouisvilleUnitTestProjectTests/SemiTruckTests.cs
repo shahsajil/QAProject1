@@ -6,7 +6,6 @@ namespace CodeLouisvilleUnitTestProjectTests
 {
     public class SemiTruckTests
     {
-
         //Verify that the SemiTruck constructor creates a new SemiTruck
         //object which is also a Vehicle and has 18 wheels. Verify that the
         //Cargo property for the newly created SemiTruck is a List of
@@ -15,10 +14,17 @@ namespace CodeLouisvilleUnitTestProjectTests
         public void NewSemiTruckIsAVehicleAndHas18TiresAndEmptyCargoTest()
         {
             //arrange
-            throw new NotImplementedException();
+            SemiTruck semiTruck = new SemiTruck();
             //act
 
             //assert
+            using (new AssertionScope())
+            {
+                semiTruck.NumberOfTires.Should().Be(18);
+                semiTruck.Cargo.Should().BeOfType<List<CargoItem>>();
+                semiTruck.Cargo.Should().BeEmpty();
+                semiTruck.Cargo.Should().NotBeNull();
+            }
             
         }
 
@@ -29,11 +35,16 @@ namespace CodeLouisvilleUnitTestProjectTests
         public void LoadCargoTest()
         {
             //arrange
-            throw new NotImplementedException();
+            SemiTruck semiTruck = new SemiTruck();
+            CargoItem cargoItem = new CargoItem();
             //act
-
+            semiTruck.LoadCargo(cargoItem);
             //assert
-
+            using (new AssertionScope())
+            {
+                semiTruck.Cargo.Should().Contain(cargoItem);
+                semiTruck.Cargo.Count.Should().Be(1);
+            }
         }
 
         //Verify that unloading a  cargo item that is in the Cargo does
@@ -42,11 +53,12 @@ namespace CodeLouisvilleUnitTestProjectTests
         public void UnloadCargoWithValidCargoTest()
         {
             //arrange
-            throw new NotImplementedException();
+            SemiTruck semiTruck = new SemiTruck();
+            CargoItem cargoItem = new CargoItem();
             //act
-
+            semiTruck.Cargo.Remove(cargoItem);
             //assert
-
+            semiTruck.Cargo.Should().NotContain(cargoItem);
         }
 
         //Verify that attempting to unload a CargoItem that does not
@@ -55,11 +67,12 @@ namespace CodeLouisvilleUnitTestProjectTests
         public void UnloadCargoWithInvalidCargoTest()
         {
             //arrange
-            throw new NotImplementedException();
+            SemiTruck semiTruck = new SemiTruck();
             //act
-
+            semiTruck.UnloadCargo("CargoItem");
             //assert
-
+            semiTruck.Invoking(semiTruck => semiTruck.UnloadCargo("CargoItem"))
+                .Should().Throw<ArgumentException>();
         }
 
         //Verify that getting cargo items by name returns all items
@@ -68,11 +81,13 @@ namespace CodeLouisvilleUnitTestProjectTests
         public void GetCargoItemsByNameWithValidName()
         {
             //arrange
-            throw new NotImplementedException();
+            SemiTruck semiTruck = new SemiTruck();
+            CargoItem cargoItem = new CargoItem()
+            { Name = "cargoItem", Description = "The Merchandise", Quantity =10};
             //act
-
+            semiTruck.LoadCargo(cargoItem);
             //assert
-
+            semiTruck.GetCargoItemsByName("cargoItem").Should().Contain(cargoItem);
         }
 
         //Verify that searching the Carto list for an item that does not
@@ -81,11 +96,13 @@ namespace CodeLouisvilleUnitTestProjectTests
         public void GetCargoItemsByNameWithInvalidName()
         {
             //arrange
-            throw new NotImplementedException();
+            SemiTruck semiTruck = new SemiTruck();
+            CargoItem cargoItem = new CargoItem()
+            { Name = "cargoItem", Description = "The Merchandise", Quantity = 10};
             //act
-
+            semiTruck.LoadCargo(cargoItem);
             //assert
-
+            semiTruck.GetCargoItemsByName("Item").Should().BeEmpty();
         }
 
         //Verify that searching the Cargo list by description for an item
@@ -94,11 +111,13 @@ namespace CodeLouisvilleUnitTestProjectTests
         public void GetCargoItemsByPartialDescriptionWithValidDescription()
         {
             //arrange
-            throw new NotImplementedException();
+            SemiTruck semiTruck = new SemiTruck();
+            CargoItem cargoItem = new CargoItem()
+            { Name = "cargoItem", Description = "The Merchandise", Quantity = 1 };
             //act
-
+            semiTruck.LoadCargo(cargoItem);
             //assert
-
+            semiTruck.GetCargoItemsByPartialDescription("The Merchandise").Should().Contain(cargoItem);
         }
 
         //Verify that searching the Carto list by description for an item
@@ -107,11 +126,13 @@ namespace CodeLouisvilleUnitTestProjectTests
         public void GetCargoItemsByPartialDescriptionWithInvalidDescription()
         {
             //arrange
-            throw new NotImplementedException();
+            SemiTruck semiTruck = new SemiTruck();
+            CargoItem cargoItem = new CargoItem()
+            { Name = "cargoItem", Description = "The Merchandise", Quantity = 1 };
             //act
-
+            semiTruck.LoadCargo(cargoItem);
             //assert
-
+            semiTruck.GetCargoItemsByPartialDescription("The Food").Should().BeEmpty();
         }
 
         //Verify that the method returns the sum of all quantities of all
@@ -120,11 +141,13 @@ namespace CodeLouisvilleUnitTestProjectTests
         public void GetTotalNumberOfItemsReturnsSumOfAllQuantities()
         {
             //arrange
-            throw new NotImplementedException();
+            SemiTruck semiTruck = new SemiTruck();
+            CargoItem cargoItem = new CargoItem()
+            { Name = "cargoItem", Description = "The Merchandise", Quantity = 1 };
             //act
-
+            semiTruck.LoadCargo(cargoItem);
             //assert
-
+            semiTruck.GetTotalNumberOfItems().Should().Be(1);
         }
     }
 }

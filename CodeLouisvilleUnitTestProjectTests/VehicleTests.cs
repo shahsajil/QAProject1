@@ -86,13 +86,15 @@ namespace CodeLouisvilleUnitTestProjectTests
         [Fact]
         public void AddingTooMuchGasThrowsGasOverflowException()
         {
+            
             //arrange
-            //Vehicle vehicle = new Vehicle(4, 10, "Honda", "CRV", 25);
+            Vehicle vehicle = new Vehicle(4, 10, "Honda", "CRV", 25);
             //act
-           // Action act = () => vehicle.AddGas(14);
+           Action act = () => vehicle.AddGas(14);
             //assert
-           // _ = act.Should().Throw<GasOverfillException>().WithMessage($"Not Enough space to add 14 gallons of gas to the tank" +
-             //   $"because the maximum capacity of tank is just 10 gallons");
+           _ = act.Should().Throw<GasOverfillException>().WithMessage(($"Unable to add {14} gallons to tank " +
+                  $"because it would exceed the capacity of {vehicle.GasTankCapacity} gallons"));
+            
         }
 
         //Using a Theory (or data-driven test), verify that the GasLevel
@@ -249,7 +251,7 @@ namespace CodeLouisvilleUnitTestProjectTests
         [Theory]
         [InlineData(10, "Drove 10 miles using 0.4 gallons of gas.")]
         [InlineData(100, "Drove 100 miles using 4 gallons of gas.")]
-        [InlineData(259, "Drove 250 miles, then ran out of gas.")]
+        [InlineData(250, "Drove 250 miles, then ran out of gas.")]
 
         public void DrivePositiveTests(double milesLeftToDrive, string DrivingStatus )
         {
@@ -273,7 +275,7 @@ namespace CodeLouisvilleUnitTestProjectTests
         [Fact]
         public async Task ChangeTireWithoutFlatTest()
         {
-           /* //arrange
+            //arrange
             Vehicle vehicle = new Vehicle(4, 10, "Honda", "CRV", 25);
             vehicle.hasFlatTire = false;
             //act
@@ -281,7 +283,7 @@ namespace CodeLouisvilleUnitTestProjectTests
             //assert
              await vehicle.Invoking(async vehicle => await vehicle.ChangeTireAsyncTest())
                 .Should().ThrowAsync<NoTireToChangeException>();
-           */
+           
         }
 
         //Verify that ChangeTireAsync can successfully
