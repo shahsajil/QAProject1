@@ -62,18 +62,17 @@ namespace CodeLouisvilleUnitTestProjectTests
            result.Should().Be(returnResult);
         }
 
-    }
         //AddPassengers test: Test that adding passengers to the car reduces the fuel economy of the
         //car by .2 per passenger. Test that removing the passengers then adds back the fuel economy.
-         [Fact]    
-         public void AddPassengersReducesFuelEconomy()
-         {
-             //arrange
-             Car car = new Car(13, "Honda", "Civic", 25);
-             //act
-             car.AddPassengers(5);
-             //assert
-             car.MilesPerGallon.Should().Be(24);
-         }
-
+        [Fact]
+        public void AddPassengersReducesFuelEconomy()
+        {
+            //arrange
+            Car car = new Car(13, "Honda", "Civic", 25);
+            //act
+            car.AddPassengers(5);
+            //assert
+            car.MilesPerGallon.Should().Be(24);
+        }
+    }
 }
